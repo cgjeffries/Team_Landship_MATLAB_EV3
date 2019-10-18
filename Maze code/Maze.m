@@ -9,8 +9,16 @@ while true
         case RED
             
             break;
+        case GREEN
             
-        
+            break;
+        case YELLOW
+            
+            break;
+        otherwise
+            
+            
+            break;
     end
     
 end
