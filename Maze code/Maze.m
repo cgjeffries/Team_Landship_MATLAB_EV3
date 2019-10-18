@@ -6,6 +6,13 @@ GREEN = 3;
 COLOR_SENSOR_PORT = 2;
 RIGHT_GAP_THRESHOLD = 20;
 
+shiftTurnPos;
+shiftStraightPos;
+
+brick.moveMotor('B', 20);
+pause(0.5);
+shiftStraightpos =
+brick.moveMotor('B', 0);
 
 
 while true
@@ -22,6 +29,7 @@ while true
             break;
         otherwise
             if getDistance() > RIGHT_GAP_THRESHOLD
+                Straight(4);
                 
             else
                 
