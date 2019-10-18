@@ -1,3 +1,7 @@
+%variables for Motors
+MOTOR_DRIVE = 'A';
+MOTOR_SHIFT = 'B';
+MOTOR_LIFT = 'C';
 
 brick.SetColorMode(1,2);
 RED = 5;
