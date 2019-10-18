@@ -3,13 +3,11 @@ brick.SetColorMode(1,2);
 RED = 5;
 YELLOW = 4;
 GREEN = 3;
-COLOR_SENSOR_PORT = 2;
-RIGHT_GAP_THRESHOLD = 20;
 
 
 
 while true
-    color = brick.ColorCode(COLOR_SENSOR_PORT);
+    color = 2;
     switch color
         case RED
             
@@ -21,11 +19,8 @@ while true
             
             break;
         otherwise
-            if getDistance() > RIGHT_GAP_THRESHOLD
-                
-            else
-                
-            end
+            number = getDistance();
+            fprintf("%f", number);
             break;
     end
     
