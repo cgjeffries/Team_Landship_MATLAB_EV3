@@ -22,6 +22,7 @@ shiftTurnPos = brick.GetMotorAngle(MOTOR_SHIFT) + 2;
 brick.moveMotor(MOTOR_SHIFT, 0);
 
 
+KeyboardControl;
 
 
 while true
