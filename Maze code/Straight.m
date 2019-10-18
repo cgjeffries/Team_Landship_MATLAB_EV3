@@ -3,5 +3,5 @@
 function Straight(x)
     SPEED = 80;
     angle = (x/6.8) * 360;
-    brick.MoveMotorAngleRel(A, SPEED, angle);
+    brick.MoveMotorAngleRel(MOTOR_DRIVE, SPEED, angle);
 end
