@@ -13,10 +13,15 @@ RIGHT_GAP_THRESHOLD = 20;
 shiftTurnPos;
 shiftStraightPos;
 
-brick.moveMotor('B', 20);
+brick.moveMotor(MOTOR_SHIFT, 20);
 pause(0.5);
-shiftStraightpos =
-brick.moveMotor('B', 0);
+shiftStraightpos = brick.GetMotorAngle(MOTOR_SHIFT) - 2;
+brick.moveMotor(MOTOR_SHIFT, -20);
+pause(0.5);
+shiftTurnpos = brick.GetMotorAngle(MOTOR_SHIFT) + 2;
+brick.moveMotor(MOTOR_SHIFT, 0);
+
+
 
 
 while true
