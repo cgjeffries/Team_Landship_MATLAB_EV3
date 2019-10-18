@@ -7,19 +7,19 @@ while controlActive
     switch key
         case 'uparrow'
             Shift("straight");
-            brick.MoveMotor(MOTOR_DRIVE, 50);
+            brick.MoveMotor(MOTOR_DRIVE, 100);
             break;
         case 'downarrow'
             Shift("straight");
-            brick.MoveMotor(MOTOR_DRIVE, -50);
+            brick.MoveMotor(MOTOR_DRIVE, -100);
             break;
         case 'leftarrow'
             Shift("turn");
-            brick.MoveMotor(MOTOR_DRIVE, 50);
+            brick.MoveMotor(MOTOR_DRIVE, 100);
             break;
         case 'rightarrow'
             Shift("turn");
-            brick.MoveMotor(MOTOR_DRIVE, -50);
+            brick.MoveMotor(MOTOR_DRIVE, -100);
             break;
         otherwise
             brick.MoveMotor('A', 0);
