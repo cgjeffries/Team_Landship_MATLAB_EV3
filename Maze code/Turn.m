@@ -11,6 +11,6 @@ SPEED = 80;
     angle = x/4; %placeholder
     
     %turns only one wheel
-    brick.MoveMotorAngleRel(A, SPEED, angle);
+    brick.MoveMotorAngleRel(MOTOR_DRIVE, SPEED, angle);
 
 end
