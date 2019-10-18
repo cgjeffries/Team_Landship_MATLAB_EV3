@@ -4,12 +4,13 @@
 %Direction determind by sign, unsure which is which direction atm
 
 function Turn(x)
-SPEED = 80;
+    SPEED = 80;
     %incert code to shift to trun mode
     %x will be in degree to turn robot, so this is a guess convertion to
     %wheel rotations
     angle = x/4; %placeholder
     
+    Shift("turn");
     %turns only one wheel
     brick.MoveMotorAngleRel(MOTOR_DRIVE, SPEED, angle);
 

@@ -15,10 +15,10 @@ shiftStraightPos;
 
 brick.moveMotor(MOTOR_SHIFT, 20);
 pause(0.5);
-shiftStraightpos = brick.GetMotorAngle(MOTOR_SHIFT) - 2;
+shiftStraightPos = brick.GetMotorAngle(MOTOR_SHIFT) - 2;
 brick.moveMotor(MOTOR_SHIFT, -20);
 pause(0.5);
-shiftTurnpos = brick.GetMotorAngle(MOTOR_SHIFT) + 2;
+shiftTurnPos = brick.GetMotorAngle(MOTOR_SHIFT) + 2;
 brick.moveMotor(MOTOR_SHIFT, 0);
 
 
