@@ -6,6 +6,8 @@ global MOTOR_DRIVE;
 global MOTOR_SHIFT;
 global MOTOR_LIFT;
 global brick;
+global liftTopPos;
+global liftBottomPos;
 
 while controlActive
     pause(0.05);
@@ -26,8 +28,15 @@ while controlActive
             Shift("turn");
             brick.MoveMotor(MOTOR_DRIVE, 100);
             
+        case 'w'
+            brick.MoveMotor(MOTOR_LIFT, 100);
+            
+        case 's'
+            brick.MoveMotor(MOTOR_LIFT, -100);
+            
         otherwise
             brick.StopMotor(MOTOR_DRIVE, 'Brake');
+            brick.StopMotor(MOTOR_LIFT, 'Brake');
             
             
     end

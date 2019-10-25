@@ -1,4 +1,11 @@
+%clear all
+global brick
+%brick = ConnectBrick('TacoBrick');
 %variables for Motors
+global MOTOR_DRIVE;
+global MOTOR_SHIFT;
+global MOTOR_LIFT;
+
 MOTOR_DRIVE = 'A';
 MOTOR_SHIFT = 'B';
 MOTOR_LIFT = 'C';
@@ -10,18 +17,27 @@ GREEN = 3;
 COLOR_SENSOR_PORT = 2;
 RIGHT_GAP_THRESHOLD = 20;
 
-shiftTurnPos;
-shiftStraightPos;
+global shiftTurnPos;
+global shiftStraightPos;
 
-brick.moveMotor(MOTOR_SHIFT, 20);
-pause(0.5);
-shiftStraightPos = brick.GetMotorAngle(MOTOR_SHIFT) - 2;
-brick.moveMotor(MOTOR_SHIFT, -20);
-pause(0.5);
-shiftTurnPos = brick.GetMotorAngle(MOTOR_SHIFT) + 2;
-brick.moveMotor(MOTOR_SHIFT, 0);
+brick.MoveMotor(MOTOR_SHIFT, -20);
+pause(1.0);
+shiftStraightPos = brick.GetMotorAngle(MOTOR_SHIFT) + 2;
+brick.MoveMotor(MOTOR_SHIFT, 20);
+pause(1.0);
+shiftTurnPos = brick.GetMotorAngle(MOTOR_SHIFT) - 2;
+brick.MoveMotor(MOTOR_SHIFT, 0);
+
+global liftTopPos;
+global liftBottomPos;
+
+brick.MoveMotor(MOTOR_LIFT, 50);
+pause(8.0);
+liftTopPos = brick.GetMotorAngle(MOTOR_LIFT) - 10;
 
 
+
+KeyboardControl;
 
 
 while true

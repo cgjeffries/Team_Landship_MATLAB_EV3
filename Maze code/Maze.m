@@ -22,11 +22,19 @@ global shiftStraightPos;
 
 brick.MoveMotor(MOTOR_SHIFT, -20);
 pause(1.0);
-shiftStraightPos = brick.GetMotorAngle(MOTOR_SHIFT) + 5;
+shiftStraightPos = brick.GetMotorAngle(MOTOR_SHIFT) + 2;
 brick.MoveMotor(MOTOR_SHIFT, 20);
 pause(1.0);
-shiftTurnPos = brick.GetMotorAngle(MOTOR_SHIFT) - 5;
+shiftTurnPos = brick.GetMotorAngle(MOTOR_SHIFT) - 2;
 brick.MoveMotor(MOTOR_SHIFT, 0);
+
+global liftTopPos;
+global liftBottomPos;
+
+brick.MoveMotor(MOTOR_LIFT, 50)
+pause(8.0);
+liftTopPos = brick.GetMotorAngle(MOTOR_LIFT) - 10;
+
 
 
 KeyboardControl;
