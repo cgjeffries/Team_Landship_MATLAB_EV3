@@ -8,7 +8,6 @@ function Turn(x)
     global MOTOR_SHIFT;
     global MOTOR_LIFT;
     global brick;
-    fudgeFactor = 1.0;
     SPEED = 80;
     Shift("turn")
     %incert code to shift to trun mode
@@ -18,13 +17,13 @@ function Turn(x)
     %6.6758
     diameter = 6.6758;
     distance = (x/5) * 360;
-    angle = (distance/diameter) * 360 * fudgeFactor; %placeholder
+    angle = (distance/diameter) * 360; %placeholder
     
     Shift("turn");
     %turns only one wheel
     start = brick.GetMotorAngle(MOTOR_DRIVE);
     brick.MoveMotorAngleRel(MOTOR_DRIVE, SPEED, angle);
-    while ((abs(brick.GetMotorAngle(MOTOR_DRIVE) - start) - angle) > 5)
+    while (abs(brick.GetMotorAngle(MOTOR_DRIVE) - start) > 5)
             pause(0.05);
     end
 
