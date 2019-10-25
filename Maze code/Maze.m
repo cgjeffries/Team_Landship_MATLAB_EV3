@@ -20,12 +20,12 @@ RIGHT_GAP_THRESHOLD = 20;
 global shiftTurnPos;
 global shiftStraightPos;
 
-brick.MoveMotor(MOTOR_SHIFT, 20);
-pause(1.0);
-shiftStraightPos = brick.GetMotorAngle(MOTOR_SHIFT) - 2;
 brick.MoveMotor(MOTOR_SHIFT, -20);
 pause(1.0);
-shiftTurnPos = brick.GetMotorAngle(MOTOR_SHIFT) + 2;
+shiftStraightPos = brick.GetMotorAngle(MOTOR_SHIFT) + 5;
+brick.MoveMotor(MOTOR_SHIFT, 20);
+pause(1.0);
+shiftTurnPos = brick.GetMotorAngle(MOTOR_SHIFT) - 5;
 brick.MoveMotor(MOTOR_SHIFT, 0);
 
 

@@ -20,11 +20,11 @@ while controlActive
             
         case 'leftarrow'
             Shift("turn");
-            brick.MoveMotor(MOTOR_DRIVE, 100);
+            brick.MoveMotor(MOTOR_DRIVE, -100);
             
         case 'rightarrow'
             Shift("turn");
-            brick.MoveMotor(MOTOR_DRIVE, -100);
+            brick.MoveMotor(MOTOR_DRIVE, 100);
             
         otherwise
             brick.StopMotor(MOTOR_DRIVE, 'Brake');
