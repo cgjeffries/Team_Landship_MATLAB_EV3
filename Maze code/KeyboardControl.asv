@@ -2,24 +2,34 @@ global key
 InitKeyboard();
 controlActive = true;
 
+global MOTOR_DRIVE;
+global MOTOR_SHIFT;
+global MOTOR_LIFT;
+global brick;
+
 while controlActive
     pause(0.05);
     switch key
         case 'uparrow'
+            Shift("straight");
+            brick.MoveMotor(MOTOR_DRIVE, 100);
             
-            break;
         case 'downarrow'
+            Shift("straight");
+            brick.MoveMotor(MOTOR_DRIVE, -100);
             
-            break;
         case 'leftarrow'
+            Shift("turn");
+            brick.MoveMotor(MOTOR_DRIVE, 100);
             
-            break;
         case 'rightarrow'
+            Shift("turn");
+            brick.MoveMotor(MOTOR_DRIVE, -100);
             
-            break;
         otherwise
-            brick.MoveMotor('A', 0);
-            break;
+            brick.MoveMotor(MOTOR_DRIVE, 0);
+            
             
     end
 end
+CloseKeyboard();
