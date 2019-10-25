@@ -34,6 +34,12 @@ while controlActive
         case 's'
             brick.MoveMotor(MOTOR_LIFT, -100);
             
+        case 'h'
+            Turn(90);
+            
+        case 'g'
+            Turn(-90);
+            
         otherwise
             brick.StopMotor(MOTOR_DRIVE, 'Brake');
             brick.StopMotor(MOTOR_LIFT, 'Brake');

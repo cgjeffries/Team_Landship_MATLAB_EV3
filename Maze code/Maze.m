@@ -31,8 +31,8 @@ brick.MoveMotor(MOTOR_SHIFT, 0);
 global liftTopPos;
 global liftBottomPos;
 
-brick.MoveMotor(MOTOR_LIFT, 50)
-pause(8.0);
+brick.MoveMotor(MOTOR_LIFT, 20)
+pause(4.0);
 liftTopPos = brick.GetMotorAngle(MOTOR_LIFT) - 10;
 
 
