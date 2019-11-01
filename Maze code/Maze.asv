@@ -52,14 +52,8 @@ global liftBottomPos;
 
 %KeyboardControl;
 
-Shift("turn");
+shift("turn");
 Turn(-90);
-Shift("Straight");
-Straight(24);
-
-while true
-    pause(1.0);
-end
 
 
 

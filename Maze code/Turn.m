@@ -12,6 +12,7 @@ function Turn(x)
     GEAR_RATIO = 6.0;
     SPEED = 100;
     Shift("turn")
+    %x = x*2;
     %incert code to shift to trun mode
     %x will be in degree to turn robot, so this is a guess convertion to
     %wheel rotations
