@@ -75,7 +75,7 @@ while true
                 brick.MoveMotorAngleRel('Motor_Drive', MOTOR_SPEED, moveTwo * 5);
                 %lower fork and drop passenger
                 haveDude = LiftControl(-1); 
-                exit;
+                return;
             else 
                 %dude has not been picked up, and turn around 180 degrees
                 turn(180);
