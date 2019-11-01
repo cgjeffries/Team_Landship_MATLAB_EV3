@@ -19,7 +19,7 @@ MOTOR_SPEED = 100;
 %var for if personIsPicked up
 haveDude = 'false'; 
 GEAR_RATIO = 6;
-moveTwo = (130 * GEAR_RATIO);
+moveTwo = (1200* GEAR_RATIO);
 
 brick.SetColorMode(1,2);
 RED = 5;
@@ -57,7 +57,7 @@ while i == 1
     switch color
         case RED
               pause(2);
-              brick.MotorMotorAngleRel('Motor_Drive', MOTOR_SPEED, 200);
+              brick.MoveMotorAngleRel(Motor_Drive, MOTOR_SPEED, moveTwo * 3);
 
            
         case GREEN
@@ -66,7 +66,7 @@ while i == 1
              %set pick up flag (a var) to true
              haveDude = 'true';
              %move forward six inches
-             brick.MotorMotorAngleRel('Motor_Drive', MOTOR_SPEED, moveTwo * 3);
+             brick.MoveMotorAngleRel('Motor_Drive', MOTOR_SPEED, moveTwo * 3);
             
         case YELLOW
             if strcmp('true', haveDude) == 0
