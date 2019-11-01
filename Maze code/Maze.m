@@ -2,12 +2,6 @@
 global brick;
 %brick = ConnectBrick('TacoBrick');
 %CHANGE BRICK MODE TO SPROCKET
-brick = SimBrick();
-brick.conn.write('SET simulateClutch 1 1');
-brick.conn.write('SET motorRange 3 -31 31');
-brick.conn.write('SET motorRange 2 -2000 2000');
-brick.conn.write('SET driveGearRatio 0.1666666 1.0');
-brick.conn.write('SET effectiveWheelbase 4.45');
 
 %variables for Motors
 global MOTOR_DRIVE;
@@ -23,7 +17,7 @@ global YELLOW;
 global GREEN;
 global COLOR_SENSOR_PORT;
 global RIGHT_GAP_THRESHOLD;
-%brick.SetColorMode(1,2);
+brick.SetColorMode(1,2);
 RED = 5;
 YELLOW = 4;
 GREEN = 3;
@@ -33,20 +27,20 @@ RIGHT_GAP_THRESHOLD = 20;
 global shiftTurnPos;
 global shiftStraightPos;
 
-%brick.MoveMotor(MOTOR_SHIFT, -20);
-%pause(1.0);
-%shiftStraightPos = brick.GetMotorAngle(MOTOR_SHIFT) + 2;
-%brick.MoveMotor(MOTOR_SHIFT, 20);
-%pause(1.0);
-%shiftTurnPos = brick.GetMotorAngle(MOTOR_SHIFT) - 2;
-%brick.MoveMotor(MOTOR_SHIFT, 0);
+brick.MoveMotor(MOTOR_SHIFT, -20);
+pause(1.0);
+shiftStraightPos = brick.GetMotorAngle(MOTOR_SHIFT) + 2;
+brick.MoveMotor(MOTOR_SHIFT, 20);
+pause(1.0);
+shiftTurnPos = brick.GetMotorAngle(MOTOR_SHIFT) - 2;
+brick.MoveMotor(MOTOR_SHIFT, 0);
 
 global liftTopPos;
 global liftBottomPos;
 
-%brick.MoveMotor(MOTOR_LIFT, 20)
-%pause(4.0);
-%liftTopPos = brick.GetMotorAngle(MOTOR_LIFT) - 10;
+brick.MoveMotor(MOTOR_LIFT, 20)
+pause(4.0);
+liftTopPos = brick.GetMotorAngle(MOTOR_LIFT) - 10;
 
 
 
