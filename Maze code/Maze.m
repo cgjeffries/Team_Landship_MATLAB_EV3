@@ -33,20 +33,20 @@ RIGHT_GAP_THRESHOLD = 20;
 global shiftTurnPos;
 global shiftStraightPos;
 
-brick.MoveMotor(MOTOR_SHIFT, -20);
-pause(1.0);
-shiftStraightPos = brick.GetMotorAngle(MOTOR_SHIFT) + 2;
-brick.MoveMotor(MOTOR_SHIFT, 20);
-pause(1.0);
-shiftTurnPos = brick.GetMotorAngle(MOTOR_SHIFT) - 2;
-brick.MoveMotor(MOTOR_SHIFT, 0);
+%brick.MoveMotor(MOTOR_SHIFT, -20);
+%pause(1.0);
+%shiftStraightPos = brick.GetMotorAngle(MOTOR_SHIFT) + 2;
+%brick.MoveMotor(MOTOR_SHIFT, 20);
+%pause(1.0);
+%shiftTurnPos = brick.GetMotorAngle(MOTOR_SHIFT) - 2;
+%brick.MoveMotor(MOTOR_SHIFT, 0);
 
 global liftTopPos;
 global liftBottomPos;
 
-brick.MoveMotor(MOTOR_LIFT, 20)
-pause(4.0);
-liftTopPos = brick.GetMotorAngle(MOTOR_LIFT) - 10;
+%brick.MoveMotor(MOTOR_LIFT, 20)
+%pause(4.0);
+%liftTopPos = brick.GetMotorAngle(MOTOR_LIFT) - 10;
 
 
 
@@ -70,8 +70,18 @@ while true
 
             break;
         case YELLOW
-            %if (personPickedUp) drive forward ten inches, lower fork, and drop passenger - - then exit
-            % else - - determine if distance
+
+            if strcmp('true', haveDude) == 0
+                %drive forward ten inches
+                brick.MoveMotorAngleRel('Motor_Drive', MOTOR_SPEED, moveTwo * 5);
+                %lower fork and drop passenger
+                haveDude = LiftControl(-1); 
+                return;
+            else 
+                %dude has not been picked up, and turn around 180 degrees
+                turn(180);
+            end
+
             break;
         otherwise
             if getDistance() > RIGHT_GAP_THRESHOLD
