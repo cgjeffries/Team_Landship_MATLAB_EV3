@@ -5,10 +5,21 @@ global brick
 global MOTOR_DRIVE;
 global MOTOR_SHIFT;
 global MOTOR_LIFT;
+global MOTOR_SPEED;
+%use for all motor speed
+
+%var for if personIsPickedUp
+global haveDude; 
 
 MOTOR_DRIVE = 'A';
 MOTOR_SHIFT = 'B';
 MOTOR_LIFT = 'C';
+MOTOR_SPEED = 100;
+
+%var for if personIsPicked up
+haveDude = 'false'; 
+GEAR_RATIO = 6;
+moveTwo = (130 * GEAR_RATIO);
 
 brick.SetColorMode(1,2);
 RED = 5;
@@ -19,7 +30,7 @@ RIGHT_GAP_THRESHOLD = 20;
 
 global shiftTurnPos;
 global shiftStraightPos;
-
+%callibration for shift motor
 brick.MoveMotor(MOTOR_SHIFT, -20);
 pause(1.0);
 shiftStraightPos = brick.GetMotorAngle(MOTOR_SHIFT) + 2;
@@ -27,46 +38,57 @@ brick.MoveMotor(MOTOR_SHIFT, 20);
 pause(1.0);
 shiftTurnPos = brick.GetMotorAngle(MOTOR_SHIFT) - 2;
 brick.MoveMotor(MOTOR_SHIFT, 0);
+%^callibration for shift motor^
 
 global liftTopPos;
 global liftBottomPos;
 
+%callibration for lift
 brick.MoveMotor(MOTOR_LIFT, 20)
 pause(4.0);
 liftTopPos = brick.GetMotorAngle(MOTOR_LIFT) - 10;
-
+%^callibration for lift^
 
 
 KeyboardControl;
 
 
 while true
-    color = brick.ColorCode(COLOR_SENSOR_PORT);
+    color = brick.ColorCode(COLOR_SENSOR_PORT)
     switch color
         case RED
-              %stop for two seconds
-              %go forward 2 inches
+              pause(2);
+              brick.MotorMotorAngleRel('Motor_Drive', MOTOR_SPEED, 200);
 
             break;
         case GREEN
              %enter manual control mode = person picking
-             %wait for manual control mode to finish
+             KeyboardControl(); 
              %set pick up flag (a var) to true
-             %drive forward 6 inches
-             %go back to checking if ground if red, green, yellow
-
+             haveDude = 'true';
+             %move forward six inches
+             brick.MotorMotorAngleRel('Motor_Drive', MOTOR_SPEED, moveTwo * 3);
             break;
         case YELLOW
-            %if (personPickedUp) drive forward ten inches, lower fork, and drop passenger - - then exit
-            % else - - determine if distance
+            if strcmp('true', haveDude) == 0
+                %drive forward ten inches
+                brick.MoveMotorAngleRel('Motor_Drive', MOTOR_SPEED, moveTwo * 5);
+                %lower fork and drop passenger
+                haveDude = LiftControl(-1); 
+                exit;
+            else 
+                %dude has not been picked up, and turn around 180 degrees
+                turn(180);
+            end
             break;
         otherwise
-            if getDistance() > RIGHT_GAP_THRESHOLD
-                Straight(4);
+            %code commented out until getDistance() works
+            
+            %if getDistance() > RIGHT_GAP_THRESHOLD
+                Straight(4); 
+           % else
                 
-            else
-                
-            end
+            %end
             break;
     end
     

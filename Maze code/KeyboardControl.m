@@ -1,4 +1,4 @@
-function Manual() 
+function KeyboardControl() 
     global key
     InitKeyboard();
     controlActive = true;
