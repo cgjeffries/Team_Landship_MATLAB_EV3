@@ -1,6 +1,14 @@
 %clear all
-global brick
+global brick;
 %brick = ConnectBrick('TacoBrick');
+%CHANGE BRICK MODE TO SPROCKET
+brick = SimBrick();
+brick.conn.write('SET simulateClutch 1 1');
+brick.conn.write('SET motorRange 3 -31 31');
+brick.conn.write('SET motorRange 2 -2000 2000');
+brick.conn.write('SET driveGearRatio 0.1666666 1.0');
+brick.conn.write('SET effectiveWheelbase 4.45');
+
 %variables for Motors
 global MOTOR_DRIVE;
 global MOTOR_SHIFT;
@@ -21,7 +29,12 @@ haveDude = 'false';
 GEAR_RATIO = 6;
 moveTwo = (130 * GEAR_RATIO);
 
-brick.SetColorMode(1,2);
+global RED;
+global YELLOW;
+global GREEN;
+global COLOR_SENSOR_PORT;
+global RIGHT_GAP_THRESHOLD;
+%brick.SetColorMode(1,2);
 RED = 5;
 YELLOW = 4;
 GREEN = 3;
