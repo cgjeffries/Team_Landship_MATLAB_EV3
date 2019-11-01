@@ -34,7 +34,7 @@ function KeyboardControl()
 
             case 's'
                 brick.MoveMotor(MOTOR_LIFT, -100);
-            case 'esc'
+            case 'q'
                 controlActive = false;
 
             otherwise

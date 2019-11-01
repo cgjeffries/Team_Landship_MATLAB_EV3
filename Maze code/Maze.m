@@ -25,7 +25,7 @@ brick.SetColorMode(1,2);
 RED = 5;
 YELLOW = 4;
 GREEN = 3;
-COLOR_SENSOR_PORT = 2;
+COLOR_SENSOR_PORT = 1;
 RIGHT_GAP_THRESHOLD = 20;
 
 global shiftTurnPos;
@@ -50,17 +50,16 @@ liftTopPos = brick.GetMotorAngle(MOTOR_LIFT) - 10;
 %^callibration for lift^
 
 
-KeyboardControl;
 
-
-while true
+i = 1;
+while i == 1
     color = brick.ColorCode(COLOR_SENSOR_PORT)
     switch color
         case RED
               pause(2);
               brick.MotorMotorAngleRel('Motor_Drive', MOTOR_SPEED, 200);
 
-            break;
+           
         case GREEN
              %enter manual control mode = person picking
              KeyboardControl(); 
@@ -68,19 +67,20 @@ while true
              haveDude = 'true';
              %move forward six inches
              brick.MotorMotorAngleRel('Motor_Drive', MOTOR_SPEED, moveTwo * 3);
-            break;
+            
         case YELLOW
             if strcmp('true', haveDude) == 0
                 %drive forward ten inches
                 brick.MoveMotorAngleRel('Motor_Drive', MOTOR_SPEED, moveTwo * 5);
                 %lower fork and drop passenger
                 haveDude = LiftControl(-1); 
+                i = 0;
                 return;
             else 
                 %dude has not been picked up, and turn around 180 degrees
                 turn(180);
             end
-            break;
+            
         otherwise
             %code commented out until getDistance() works
             
@@ -89,7 +89,7 @@ while true
            % else
                 
             %end
-            break;
+            
     end
     
 end
