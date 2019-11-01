@@ -73,8 +73,18 @@ while true
 
             break;
         case YELLOW
-            %if (personPickedUp) drive forward ten inches, lower fork, and drop passenger - - then exit
-            % else - - determine if distance
+
+            if strcmp('true', haveDude) == 0
+                %drive forward ten inches
+                brick.MoveMotorAngleRel('Motor_Drive', MOTOR_SPEED, moveTwo * 5);
+                %lower fork and drop passenger
+                haveDude = LiftControl(-1); 
+                return;
+            else 
+                %dude has not been picked up, and turn around 180 degrees
+                turn(180);
+            end
+
             break;
         otherwise
             if getDistance() > RIGHT_GAP_THRESHOLD
