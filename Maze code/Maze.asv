@@ -27,6 +27,8 @@ YELLOW = 4;
 GREEN = 3;
 COLOR_SENSOR_PORT = 1;
 RIGHT_GAP_THRESHOLD = 20;
+TARGET_DISTANCE = 10;
+kP = 2.5;
 
 global shiftTurnPos;
 global shiftStraightPos;
@@ -49,31 +51,34 @@ pause(4.0);
 liftTopPos = brick.GetMotorAngle(MOTOR_LIFT) - 10;
 %^callibration for lift^
 
-
-
-i = 1;
-while i == 1
-    
+striaghtCount = 0;
+blindDrive=16
+yeet = 1;
+while yeet == 1
     color = brick.ColorCode(COLOR_SENSOR_PORT);
     switch color
         case RED
               pause(2);
-              Straight(2);
+              brick.MoveMotorAngleRel(Motor_Drive, MOTOR_SPEED, moveTwo * 3);
+
            
         case GREEN
              %enter manual control mode = person picking
+             blindDrive = 16;
              KeyboardControl(); 
              %set pick up flag (a var) to true
-             haveDude = true;
+             haveDude = 'true';
              %move forward six inches
-             Straight(12);
+             brick.MoveMotorAngleRel('Motor_Drive', MOTOR_SPEED, moveTwo * 3);
+            
         case YELLOW
-            if (haveDude)
+            if strcmp('true', haveDude) == 0
+                blindDrive = 16;
                 %drive forward ten inches
-                Straight(12);
+                brick.MoveMotorAngleRel('Motor_Drive', MOTOR_SPEED, moveTwo * 5);
                 %lower fork and drop passenger
                 haveDude = LiftControl(-1); 
-                i = 0;
+                yeet = 0;
                 return;
             else 
                 %dude has not been picked up, and turn around 180 degrees
@@ -81,14 +86,65 @@ while i == 1
             end
             
         otherwise
-            %code commented out until getDistance() works
+            %Distance > 20?
+            if (getDistance() > RIGHT_GAP_THRESHOLD) && blindDrive >= 16
+                blindDrive = 0;
+                %Drive forward 4in
+                Straight(4);
+                %Turn right 90 deg
+                Turn(90);
+            end
             
-           %if getDistance() > RIGHT_GAP_THRESHOLD
-                Straight(8); 
-           %else
+            if(blindDrive < 16)
+                blindDrive=blindDrive+1;
+            else
+                %normal algorithm goes here
                 
-           %end
-            
+                %check for wall in front every three cycles
+                if(straightCount >= 3)
+                    %reset the cycle count
+                    straightCount = 0;
+                    %turn the ultrasonic to face towards the direction of
+                    %travel
+                    Turn(-90);
+                    %reset the wall booleans
+                    wallForward = false;
+                    wallLeft = false;
+                    %If a wall is within 10 inches in the direction of
+                    %travel
+                    if(getDistance() < 10)
+                        %set the forwad wall boolean to true
+                        wallForward = true;
+                        %Turnt he ultrasonic to face to the left
+                        Turn(-90);
+                        %if there is a wall on the left
+                        if(getDistance() < 10)
+                            %sett the left wall boolean to true
+                            wallLeft = true;
+                        end
+                    end
+                    %Unless there were walls in both places, we need to
+                    %rotate 90 degrees to the right to face our robot in
+                    %the direction of travel
+                    if((~wallLeft) || (~wallForward))
+                        Turn(90);
+                    end
+                    
+                    
+                end
+                
+                straightCount = straightCount + 1;
+                
+                turnAngle = ((getDistance() - TARGET_DISTANCE) * kP);
+                
+                if(abs(turnAngle) > 15)
+                    turnAngle = (abs(turnAngle)/turnAngle) * 15;
+                end
+                
+                if(abs(turnAngle) > 5)
+                    Turn(turnAngle);
+                end
+            end
     end
     
 end
