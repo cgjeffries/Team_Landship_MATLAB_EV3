@@ -1,6 +1,6 @@
 %clear all
 global brick
-%brick = ConnectBrick('TacoBrick');
+%brick = ConnectBrick('TAPPY');
 %variables for Motors
 global MOTOR_DRIVE;
 global MOTOR_SHIFT;
@@ -53,7 +53,7 @@ liftTopPos = brick.GetMotorAngle(MOTOR_LIFT) - 10;
 
 i = 1;
 while i == 1
-    color = brick.ColorCode(COLOR_SENSOR_PORT)
+    color = brick.ColorCode(COLOR_SENSOR_PORT);
     switch color
         case RED
               pause(2);
