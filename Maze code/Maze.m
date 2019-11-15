@@ -84,11 +84,11 @@ while i == 1
         otherwise
             %code commented out until getDistance() works
             
-            %if getDistance() > RIGHT_GAP_THRESHOLD
+           if getDistance() > RIGHT_GAP_THRESHOLD
                 Straight(4); 
-           % else
+           else
                 
-            %end
+           end
             
     end
     
