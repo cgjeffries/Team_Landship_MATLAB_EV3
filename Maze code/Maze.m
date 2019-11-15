@@ -28,7 +28,7 @@ GREEN = 3;
 COLOR_SENSOR_PORT = 1;
 RIGHT_GAP_THRESHOLD = 20;
 TARGET_DISTANCE = 10;
-kP = 2.5;
+kP = 1;
 
 global shiftTurnPos;
 global shiftStraightPos;
@@ -55,7 +55,7 @@ liftTopPos = brick.GetMotorAngle(MOTOR_LIFT) - 10;
 straightCount = 0;
 blindDrive=16;
 yeet = 1;
-while yeet == 1
+while yeet == 1 % to yeet out of the program
     color = brick.ColorCode(COLOR_SENSOR_PORT);
     switch color
         case RED
@@ -85,8 +85,8 @@ while yeet == 1
             end
             
         otherwise
-            %Distance > 20?
-            if (getDistance() > RIGHT_GAP_THRESHOLD) && blindDrive >= 16
+            %if distance to wall is too far and if not blind driving)
+            if ((getDistance() > RIGHT_GAP_THRESHOLD) && (blindDrive >= 16 ))
                 blindDrive = 0;
                 %Drive forward 4in
                 Straight(4);
@@ -94,12 +94,15 @@ while yeet == 1
                 Turn(90);
             end
             
+            %blind driving
             if(blindDrive < 16)
                 blindDrive=blindDrive+1;
+            %wall following code    
             else
                 %normal algorithm goes here
                 
                 %check for wall in front every three cycles
+                fprintf("straightCount: %d\n", straightCount);
                 if(straightCount >= 3)
                     %reset the cycle count
                     straightCount = 0;
@@ -113,12 +116,14 @@ while yeet == 1
                     %travel
                     if(getDistance() < 10)
                         %set the forwad wall boolean to true
+                        fprintf("There is a wall in front\n");
                         wallForward = true;
                         %Turnt he ultrasonic to face to the left
                         Turn(-90);
                         %if there is a wall on the left
                         if(getDistance() < 10)
                             %sett the left wall boolean to true
+                            fprintf("There is a wall to left\n");
                             wallLeft = true;
                         end
                     end
@@ -136,15 +141,17 @@ while yeet == 1
                 
                 turnAngle = ((getDistance() - TARGET_DISTANCE) * kP);
                 
-                if(abs(turnAngle) > 15)
-                    turnAngle = (abs(turnAngle)/turnAngle) * 15;
+                if(abs(turnAngle) > 8)
+                    turnAngle = (abs(turnAngle)/turnAngle) * 8;
                 end
                 
-                if(abs(turnAngle) > 5)
+                if(abs(turnAngle) > 2)
+                    fprintf("Adjusting by %f degrees\n", turnAngle);
                     Turn(turnAngle);
                 end
             end
-            Straight(0.8);
+            fprintf("Inching straight\n");
+            Straight(2);
     end
     
     pause(0.1);

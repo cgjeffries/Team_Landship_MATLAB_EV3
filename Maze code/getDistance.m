@@ -4,6 +4,7 @@ function x = getDistance()
     global brick;
     ULTRASONIC_PORT = 4;
     x = brick.UltrasonicDist(ULTRASONIC_PORT)/2.54;
+    fprintf("Distance to the wall: %f\n", x);
 end
 
     

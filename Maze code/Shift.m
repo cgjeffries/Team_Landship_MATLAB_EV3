@@ -6,7 +6,7 @@ function Shift(mode)
     
     global shiftTurnPos;
     global shiftStraightPos;
-    SHIFT_SPEED = 20;
+    SHIFT_SPEED = 50;
     %MOTOR_SHIFT = 'B';
     if mode == "straight"
         brick.MoveMotorAngleAbs(MOTOR_SHIFT, SHIFT_SPEED, shiftStraightPos, 'Brake');
