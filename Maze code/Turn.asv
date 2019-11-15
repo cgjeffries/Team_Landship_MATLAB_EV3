@@ -19,7 +19,7 @@ function Turn(x)
     %6.6758
     diameter = 6.6758;
     distance = (x/360) * (4.25 * pi);
-    angle = (distance/diameter) * 360 * fudgeFactor * GEAR_RATIO; %placeholder
+    angle = int32((distance/diameter) * 360 * fudgeFactor * GEAR_RATIO); %placeholder
     
     %angle = cast(angle, 'double');
     
@@ -28,11 +28,12 @@ function Turn(x)
     start = brick.GetMotorAngle(MOTOR_DRIVE);
     %start = cast(start, 'double');
     brick.MoveMotorAngleRel(MOTOR_DRIVE, SPEED, angle);
-    error = abs((brick.GetMotorAngle(MOTOR_DRIVE) - start) - angle);
-    while ( > 5)
-            %fprintf("Error: %f\n", abs((brick.GetMotorAngle(MOTOR_DRIVE) - start) - angle));
+
+    %while (abs((brick.GetMotorAngle(MOTOR_DRIVE) - start) - angle) > 10)
+            fprintf("Error: %f\n", abs((brick.GetMotorAngle(MOTOR_DRIVE) - start) - angle));
             pause(0.05);
-    end
-    %pause(10);
+    %end
+    
+    pause(2);
 
 end

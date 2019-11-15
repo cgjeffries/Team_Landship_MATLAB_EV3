@@ -28,11 +28,12 @@ function Turn(x)
     start = brick.GetMotorAngle(MOTOR_DRIVE);
     %start = cast(start, 'double');
     brick.MoveMotorAngleRel(MOTOR_DRIVE, SPEED, angle);
-
-    %while (abs((brick.GetMotorAngle(MOTOR_DRIVE) - start) - angle) > 10)
-            fprintf("Error: %f\n", abs((brick.GetMotorAngle(MOTOR_DRIVE) - start) - angle));
-            pause(0.05);
-    %end
+    brick.WaitForMotor(MOTOR_DRIVE);
+    
+%    while (abs((brick.GetMotorAngle(MOTOR_DRIVE) - start) - angle) > 10)
+%           fprintf("Error: %f\n", abs((brick.GetMotorAngle(MOTOR_DRIVE) - start) - angle));
+%            pause(0.05);
+%    end
     
     pause(2);
 

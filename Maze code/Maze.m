@@ -103,7 +103,7 @@ while yeet == 1 % to yeet out of the program
                 
                 %check for wall in front every three cycles
                 fprintf("straightCount: %d\n", straightCount);
-                if(straightCount >= 3)
+                if(straightCount > 3)
                     %reset the cycle count
                     straightCount = 0;
                     %turn the ultrasonic to face towards the direction of
@@ -134,26 +134,28 @@ while yeet == 1 % to yeet out of the program
                         Turn(90);
                     end
                     
+                    turnAngle = ((getDistance() - TARGET_DISTANCE) * kP);
+
+                    if(abs(turnAngle) > 8)
+                        turnAngle = (abs(turnAngle)/turnAngle) * 8;
+                    end
+
+                    if(abs(turnAngle) > 1)
+                        fprintf("Adjusting by %f degrees\n", turnAngle);
+                        Turn(turnAngle);
+                    end
+                    
                     
                 end
                 
                 straightCount = straightCount + 1;
                 
-                turnAngle = ((getDistance() - TARGET_DISTANCE) * kP);
-                
-                if(abs(turnAngle) > 8)
-                    turnAngle = (abs(turnAngle)/turnAngle) * 8;
-                end
-                
-                if(abs(turnAngle) > 2)
-                    fprintf("Adjusting by %f degrees\n", turnAngle);
-                    Turn(turnAngle);
-                end
+               
             end
             fprintf("Inching straight\n");
-            Straight(2);
+            Straight(1);
     end
     
-    pause(0.1);
+    %pause(0.1);
     
 end
