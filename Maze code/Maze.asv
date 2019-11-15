@@ -145,9 +145,6 @@ while yeet == 1
                     Turn(turnAngle);
                 end
             end
-            Straight(0.8);
     end
-    
-    pause(0.1);
     
 end
