@@ -52,8 +52,8 @@ liftTopPos = brick.GetMotorAngle(MOTOR_LIFT) - 10;
 %^callibration for lift^
 
 
-striaghtCount = 0;
-blindDrive=16
+straightCount = 0;
+blindDrive=16;
 yeet = 1;
 while yeet == 1
     color = brick.ColorCode(COLOR_SENSOR_PORT);
