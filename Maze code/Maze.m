@@ -29,6 +29,7 @@ COLOR_SENSOR_PORT = 1;
 RIGHT_GAP_THRESHOLD = 20;
 TARGET_DISTANCE = 10;
 kP = 1;
+kD = 1;
 
 global shiftTurnPos;
 global shiftStraightPos;
@@ -52,6 +53,8 @@ liftTopPos = brick.GetMotorAngle(MOTOR_LIFT) - 10;
 %^callibration for lift^
 
 
+previousDistance = 0;
+firstRun = true;
 straightCount = 0;
 blindDrive=16;
 yeet = 1;
@@ -134,7 +137,11 @@ while yeet == 1 % to yeet out of the program
                         Turn(90);
                     end
                     
-                    turnAngle = ((getDistance() - TARGET_DISTANCE) * kP);
+                    distance = getDistance();
+                    
+                    turnAngle = ((distance - TARGET_DISTANCE) * kP) - ((previousDistance - distance) * kD);
+                    
+                    previousDistance = distance;
 
                     if(abs(turnAngle) > 8)
                         turnAngle = (abs(turnAngle)/turnAngle) * 8;
