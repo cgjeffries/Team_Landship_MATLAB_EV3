@@ -139,6 +139,11 @@ while yeet == 1 % to yeet out of the program
                     
                     distance = getDistance();
                     
+                    if(firstRun)
+                        previousDistance = distance;
+                        firstRun = false;
+                    end
+                    
                     turnAngle = ((distance - TARGET_DISTANCE) * kP) - ((previousDistance - distance) * kD);
                     
                     previousDistance = distance;
