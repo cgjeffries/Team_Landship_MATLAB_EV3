@@ -79,7 +79,7 @@ while yeet == 1 % to yeet out of the program
                 %drive forward ten inches
                 Straight(10);
                 %lower fork and drop passenger
-                haveDude = LiftControl(-1); 
+                LiftControl(haveDude); 
                 yeet = 0;
                 return;
             else 
