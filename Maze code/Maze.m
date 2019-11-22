@@ -17,7 +17,7 @@ MOTOR_LIFT = 'C';
 MOTOR_SPEED = 100;
 
 %var for if personIsPicked up
-haveDude = 'false'; 
+haveDude = false; 
 GEAR_RATIO = 6;
 moveTwo = (1200* GEAR_RATIO);
 
@@ -67,11 +67,11 @@ while yeet == 1 % to yeet out of the program
              blindDrive = 16;
              KeyboardControl(); 
              %set pick up flag (a var) to true
-             haveDude = 'true';
+             haveDude = true;
              %move forward six inches
              Straight(12);
         case YELLOW
-            if strcmp('true', haveDude) == 0
+            if (haveDude)
                 blindDrive = 16;
                 %drive forward ten inches
                 Straight(10);
