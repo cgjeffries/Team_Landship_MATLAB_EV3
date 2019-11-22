@@ -10,6 +10,7 @@ function Straight(x)
         angle = (1/6.8) * 360;
         Shift("straight");
         brick.MoveMotorAngleRel(MOTOR_DRIVE, SPEED, angle*MOVEFACTOR);
-        pause(1);
+        brick.WaitForMotor(MOTOR_DRIVE);
+        %pause(1);
     end
 end
