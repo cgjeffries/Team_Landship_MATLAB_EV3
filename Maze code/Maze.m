@@ -93,7 +93,7 @@ while yeet == 1 % to yeet out of the program
             if (haveDude)
                 blindDrive = 16;
                 %drive forward ten inches
-                Straight(10);
+                Straight(15);
                 %lower fork and drop passenger
                 LiftControl(haveDude); 
                 yeet = 0;
