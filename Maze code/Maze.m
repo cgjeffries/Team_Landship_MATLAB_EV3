@@ -96,7 +96,7 @@ while yeet == 1 % to yeet out of the program
             if (haveDude)
                 blindDrive = 16;
                 %drive forward ten inches
-                Straight(10);
+                Straight(15);
                 %lower fork and drop passenger
                 LiftControl(haveDude); 
                 yeet = 0;
@@ -187,8 +187,10 @@ while yeet == 1 % to yeet out of the program
             end
             fprintf("Inching straight\n");
             %Straight(1);
-            pause(0.5);
+            Shift('straight');
             brick.MoveMotor(MOTOR_DRIVE, 100);
+            pause(0.25);
+            
     end
     
     %pause(0.1);
