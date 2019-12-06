@@ -11,6 +11,8 @@ global MOTOR_SPEED;
 %var for if personIsPickedUp
 global haveDude; 
 
+brick.MoveMotor(MOTOR_DRIVE, 0);
+
 pause(2);
 brick.playTone(100, 1244.51, 1000);
 pause(0.33);
@@ -104,6 +106,8 @@ while yeet == 1 % to yeet out of the program
             else 
                 %dude has not been picked up, and turn around 180 degrees
                 Turn(180);
+                Straight(9);
+                %Turn(90);
             end
             
         otherwise
