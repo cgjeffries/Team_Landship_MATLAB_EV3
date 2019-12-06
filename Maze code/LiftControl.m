@@ -4,11 +4,12 @@
 %x is boolean, true if you have dude
 %haveDude2 is not the same variable as haveDude
 function LiftControl(x)
-    MOTOR_LIFT = 'C';
+    global brick;
+    global MOTOR_LIFT;
     
         if(x)
             %dropdude
-            brick.MoveMotorRel(MOTOR_LIFT, 25, 5400);
+            brick.MoveMotorAngleRel(MOTOR_LIFT, 25, -1000);
 
         else
             return;

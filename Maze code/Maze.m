@@ -11,6 +11,21 @@ global MOTOR_SPEED;
 %var for if personIsPickedUp
 global haveDude; 
 
+pause(2);
+brick.playTone(100, 1244.51, 1000);
+pause(0.33);
+brick.playTone(100, 622.25, 1000);
+pause(0.16);
+brick.playTone(100, 932.33, 1000);
+pause(0.33);
+brick.playTone(100, 830.61, 1000);
+pause(0.33);
+brick.playTone(100, 622.25, 1000);
+pause(0.16);
+brick.playTone(100, 1244.51, 1000);
+pause(0.33);
+brick.playTone(100, 932.33, 1000);
+
 MOTOR_DRIVE = 'A';
 MOTOR_SHIFT = 'B';
 MOTOR_LIFT = 'C';
@@ -73,7 +88,7 @@ while yeet == 1 % to yeet out of the program
              %set pick up flag (a var) to true
              haveDude = true;
              %move forward six inches
-             Straight(12);
+             Straight(8);
         case YELLOW
             if (haveDude)
                 blindDrive = 16;
@@ -85,7 +100,7 @@ while yeet == 1 % to yeet out of the program
                 return;
             else 
                 %dude has not been picked up, and turn around 180 degrees
-                turn(180);
+                Turn(180);
             end
             
         otherwise
