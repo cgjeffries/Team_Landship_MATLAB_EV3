@@ -63,6 +63,7 @@ while yeet == 1 % to yeet out of the program
     color = brick.ColorCode(COLOR_SENSOR_PORT);
     switch color
         case RED
+            brick.MoveMotor(MOTOR_DRIVE, 0);
               pause(2);
               Straight(2);
            
