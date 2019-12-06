@@ -62,7 +62,7 @@ global liftTopPos;
 global liftBottomPos;
 
 %callibration for lift
-brick.MoveMotor(MOTOR_LIFT, 20)
+brick.MoveMotor(MOTOR_LIFT, 20);
 pause(4.0);
 liftTopPos = brick.GetMotorAngle(MOTOR_LIFT) - 10;
 brick.MoveMotor(MOTOR_LIFT,0);
@@ -78,18 +78,21 @@ while yeet == 1 % to yeet out of the program
     color = brick.ColorCode(COLOR_SENSOR_PORT);
     switch color
         case RED
+              brick.MoveMotor(MOTOR_DRIVE, 0);
               pause(2);
               Straight(2);
            
         case GREEN
+             brick.MoveMotor(MOTOR_DRIVE, 0);
              %enter manual control mode = person picking
              blindDrive = 16;
-             KeyboardControl(); 
+             KeyboardControl();  
              %set pick up flag (a var) to true
              haveDude = true;
              %move forward six inches
              Straight(8);
         case YELLOW
+            brick.MoveMotor(MOTOR_DRIVE, 0);
             if (haveDude)
                 blindDrive = 16;
                 %drive forward ten inches
@@ -106,6 +109,7 @@ while yeet == 1 % to yeet out of the program
         otherwise
             %if distance to wall is too far and if not blind driving)
             if ((getDistance() > RIGHT_GAP_THRESHOLD) && (blindDrive >= 16 ))
+                brick.MoveMotor(MOTOR_DRIVE, 0);
                 blindDrive = 0;
                 %Drive forward 4in
                 Straight(4);
@@ -123,6 +127,7 @@ while yeet == 1 % to yeet out of the program
                 %check for wall in front every three cycles
                 fprintf("straightCount: %d\n", straightCount);
                 if(straightCount > 3)
+                    brick.MoveMotor(MOTOR_DRIVE, 0);
                     %reset the cycle count
                     straightCount = 0;
                     %turn the ultrasonic to face towards the direction of
@@ -181,7 +186,9 @@ while yeet == 1 % to yeet out of the program
                
             end
             fprintf("Inching straight\n");
-            Straight(1);
+            %Straight(1);
+            pause(0.5);
+            brick.MoveMotor(MOTOR_DRIVE, 100);
     end
     
     %pause(0.1);
